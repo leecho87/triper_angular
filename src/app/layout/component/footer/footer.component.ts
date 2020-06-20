@@ -13,8 +13,7 @@ export class FooterComponent implements OnInit {
     console.log(this.citiesService);
     console.log();
     this.citiesService.getCitiesItems().subscribe(data => {
-      console.log('[subscribe]', data);
-      
+      console.log('[subscribe]', data.response.body.items);
     })
   }
 

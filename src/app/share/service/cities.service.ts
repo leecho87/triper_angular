@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParameterCodec } from '@angular/common/http';
 import {BehaviorSubject, Observable, of, throwError} from 'rxjs';
 import {catchError, map} from 'rxjs/operators';
 
@@ -8,35 +8,35 @@ import {catchError, map} from 'rxjs/operators';
   providedIn: 'root'
 })
 export class CitiesService {
-  service: string =  'areaCode';
+  service = 'areaCode';
   constructor(
     private http: HttpClient
-  ) { 
-    console.log(environment.apiKey);
-    
-  } 
+  ) {} 
 
-  setParam(){
-    return {
-      'ServiceKey' : this.setDecodeKey('Q6I%2FZ%2BtN8n3yVqpZvlgFIP8b9xAx8Sv2KgwT3lcFGRU3RJDZ5V09bOOtfLXTC9PW0kg2Ju9fGOWlO4BMrt2LMw%3D%3D'),
-      'MobileOS': 'ETC',
-      'MobileApp': 'AppTest',
-      '_type': 'json'
-    }
-  }
 
-  setDecodeKey(key:string){
-    return decodeURIComponent(key);
+  getParam(){
+    const param = {
+      ServiceKey : 'xTIWihmkq%2BfoFqkInfWxmsUXV9Py9gV4fkUbleEuJ4SfYsUSneIkUEWSW1Geiuoa8oCXCVFDPBb57XIPaoGD0Q%3D%3D',
+      MobileOS: 'ETC',
+      MobileApp: 'AppTest',
+      _type: 'json',
+    };
+
+    console.log(param.ServiceKey);
+
+    const params = Object.keys(param).reduce((acc, cur, i) => {
+      if (param[cur]) {
+        acc += `${cur}=${param[cur]}&`;
+      }
+      return acc;
+    }, '?');
+    return params.slice(0, -1);
   }
 
   getCitiesItems() {
-    console.log(this.setParam());
-    
-    return this.http.get(`${environment.apiURL}`, {
-      params: this.setParam()
-      }).pipe(
+    return this.http.get(`${environment.apiURL}${this.service}${this.getParam()}`).pipe(
         map((res: any) => {
-          return res.data;
+          return res;
         }),
         catchError((err) => {
           return throwError(err);
@@ -44,11 +44,3 @@ export class CitiesService {
     );
   }
 }
-
-
-/**
- * 
- * 
- * https://api.visitkorea.or.kr/openapi/service/rest/KorService/areaCode?ServiceKey=Q6I%2FZ%2BtN8n3yVqpZvlgFIP8b9xAx8Sv2KgwT3lcFGRU3RJDZ5V09bOOtfLXTC9PW0kg2Ju9fGOWlO4BMrt2LMw%3D%3D&MobileOS=ETC&MobileApp=AppTest&_type=json
- * https://api.visitkorea.or.kr/openapi/service/rest/KorService/areaCode?ServiceKey=Q6I%252FZ%252BtN8n3yVqpZvlgFIP8b9xAx8Sv2KgwT3lcFGRU3RJDZ5V09bOOtfLXTC9PW0kg2Ju9fGOWlO4BMrt2LMw%253D%253D&MobileOS=ETC&MobileApp=AppTest&_type=json
- */
