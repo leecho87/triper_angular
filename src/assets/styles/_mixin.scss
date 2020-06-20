@@ -1,0 +1,56 @@
+@mixin clearfix {
+    *zoom:1;
+    &:after{
+      content:"";
+      clear:both;
+      display:block
+    }
+  };
+  
+  @mixin placeholder($color) {
+    &::-webkit-input-placeholder {
+      @content;
+      color:$color;
+    }
+    &::-moz-placeholder {
+      @content;
+      color:$color;
+    }
+    &:-moz-placeholder {
+      @content;
+      color:$color;
+    }
+    &:-ms-placeholder {
+      @content;
+      color:$color;
+    }
+  };
+  
+  @mixin radius($radius){
+    -webkit-border-radius:$radius;
+    -moz-border-radius:$radius;
+    -ms-border-radius:$radius;
+    -o-border-radius:$radius;
+    border-radius:$radius;
+  };
+  
+  @mixin disabled-drag {
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    -o-user-select:none;
+    user-select:none;
+  };
+  
+  @mixin ellipsis {
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+  };
+  
+  @mixin clamp($line){
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: $line;
+  };

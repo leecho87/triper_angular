@@ -1,1 +1,11 @@
-/* You can add global styles to this file, and also import other style files */
+@font-face{ 
+    font-family:'tf';
+    src: url('./assets/fonts/fontYouandiModernTR.ttf');
+    src:local(※), url('./assets/fonts/fontYouandiModernTR.ttf') format(ttf)
+}
+
+@import './assets/styles/reset';
+@import './assets/styles/mixin';
+@import './assets/styles/color';
+@import './assets/styles/layout';
+@import './assets/styles/home';

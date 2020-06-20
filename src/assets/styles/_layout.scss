@@ -1,0 +1,51 @@
+.header {
+    z-index:1000;
+    position:relative;
+    padding:40px 0;
+    min-height:200px;
+    background:url('./assets/images/home/home_top.jpg');
+    background-size:cover;
+
+    * { 
+        color:#fff;
+    }
+    .header_title {
+        text-align:center;
+    }
+
+    .header_search {
+        padding:20px;
+        margin:0 40px;
+        background-color:#fff;
+    }
+
+    .header_comment {
+        padding:20px 0 0;
+        text-align:center;
+    }
+}
+
+.container {
+    z-index:500;
+    position:relative;
+}
+
+.footer {
+    z-index:100;
+    position:fixed;
+    left:0;
+    bottom:0;
+    right:0;
+    width:100%;
+    height:50px;
+    border-top:1px solid #666;
+
+    .navigator_list {
+        display:flex;
+    }
+    .navigator_item {
+        flex:1;
+        line-height:50px;
+        text-align:center;
+    }
+} 
