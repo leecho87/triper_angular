@@ -7,12 +7,21 @@ import {catchError, map} from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
+
 export class CitiesService {
-  service = 'areaCode';
+  service: string;
+  code: number;
+
   constructor(
     private http: HttpClient
-  ) {} 
+  ) {
+    this.code = 1;
+    this.service = 'areaCode'
+  }
 
+  settingParams(code) {
+    let param;
+  }
 
   getParam(){
     const param = {
@@ -20,9 +29,8 @@ export class CitiesService {
       MobileOS: 'ETC',
       MobileApp: 'AppTest',
       _type: 'json',
+      numOfRows: 17
     };
-
-    console.log(param.ServiceKey);
 
     const params = Object.keys(param).reduce((acc, cur, i) => {
       if (param[cur]) {
@@ -32,7 +40,7 @@ export class CitiesService {
     }, '?');
     return params.slice(0, -1);
   }
-
+  
   getCitiesItems() {
     return this.http.get(`${environment.apiURL}${this.service}${this.getParam()}`).pipe(
         map((res: any) => {
@@ -42,5 +50,9 @@ export class CitiesService {
           return throwError(err);
         })
     );
+  }
+
+  getAreaItems() {
+
   }
 }

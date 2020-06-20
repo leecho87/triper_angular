@@ -1,51 +1,121 @@
 .header {
-    z-index:1000;
-    position:relative;
-    padding:40px 0;
-    min-height:200px;
-    background:url('./assets/images/home/home_top.jpg');
-    background-size:cover;
+  z-index: 1000;
+  position: relative;
+  min-height: 200px;
+  background-image: url('./assets/images/home/home_top.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 
-    * { 
-        color:#fff;
+  .header_title {
+    padding: 40px 0 20px;
+    text-align: center;
+
+    a {
+      display: block;
+      color: #fff;
+      text-shadow: 0 4px 6px #fff;
     }
-    .header_title {
-        text-align:center;
+  }
+
+  .header_search {
+    position: relative;
+    margin: 0 40px;
+    // padding-right: 40px;
+
+    .search_bar {
+      border: 1px solid #fff;
+      color: #000;
     }
 
-    .header_search {
-        padding:20px;
-        margin:0 40px;
-        background-color:#fff;
+    .search_icon {
+      display:none;
+      position: absolute;
+      right: 0;
+      top: 0;
+      background:none;
+      border:0 none;
+      img {
+        width:36px;
+      }
     }
+  }
 
-    .header_comment {
-        padding:20px 0 0;
-        text-align:center;
-    }
+  .header_comment {
+    padding: 20px 0 40px;
+    text-align: center;
+    color: #fff;
+    text-shadow: 0 4px 6px #000;
+  }
 }
 
 .container {
-    z-index:500;
-    position:relative;
+  z-index: 500;
+  position: relative;
 }
 
-.footer {
-    z-index:100;
-    position:fixed;
-    left:0;
-    bottom:0;
-    right:0;
-    width:100%;
-    height:50px;
-    border-top:1px solid #666;
+.content {
+  padding: 20px;
+}
 
-    .navigator_list {
-        display:flex;
+.item_tit {
+  margin-bottom: 20px;
+  font-size: 18px;
+  height: 18px;
+  line-height: 18px;
+
+  &:before {
+    content: '';
+    display: inline-block;
+    width: 3px;
+    height: 100%;
+    margin-right: 8px;
+    vertical-align: middle;
+    background-color: #9badef;
+  }
+
+  .item_info {
+    display: inline-block;
+    margin-left: 15px;
+    font-size: 13px;
+    vertical-align: middle;
+    color: gray;
+  }
+}
+
+
+.footer {
+  z-index: 100;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  border-top: 1px solid #666;
+  background-color: #fff;
+
+  .nav {
+    height: 60px;
+  }
+
+  .nav_list {
+    display: flex;
+    height: 100%;
+  }
+
+  .nav_item {
+    flex: 1;
+
+    a {
+      display: block;
+      padding: 8px 0 0;
+      height: 100%;
+      font-size: 13px;
+      text-align: center;
+
+      img {
+        margin-bottom: 6px;
+      }
     }
-    .navigator_item {
-        flex:1;
-        line-height:50px;
-        text-align:center;
-    }
-} 
+  }
+}
