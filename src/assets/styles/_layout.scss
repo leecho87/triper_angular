@@ -55,7 +55,27 @@
 }
 
 .content {
+  position:relative;
   padding: 20px;
+  margin-top:20px;
+  &:before {
+    content:'';
+    position:absolute;
+    left:50%;
+    top:0;
+    width:220px;
+    height:1px;
+    transform:translateX(-50%);
+    background-color:#ddd;
+    box-shadow:0 1px 4px 0 rgba(0, 0, 0, .1)
+  }
+
+  &:first-child {
+    margin-top:0;
+    &:before {
+      display:none;
+    }
+  }
 }
 
 .item_tit {
