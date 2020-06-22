@@ -10,32 +10,31 @@ export class CitiesComponent implements OnInit {
   cities: Array<Object>;
   selectedCity: number;
   locations: Array<Object>;
+  locationAll: Object;
+
   constructor(
     private citiesService:CitiesService
   ) { 
     this.selectedCity = 1;
+    this.locationAll = this.citiesService.locationAll;
+    console.log(this.locationAll);
+    
   }
 
   ngOnInit() {
-    this.citiesService.getCitiesItems({"numOfRows" : "17"}).subscribe(data => {
+    console.log(this.citiesService);
+    
+    this.citiesService.getCitiesItems().subscribe(data => {
       this.cities = data.response.body.items.item;
     });
-    this.citiesService.getCitiesItems(
-      {
-        "areaCode" : this.selectedCity
-      }
-    ).subscribe(data => {
+    this.citiesService.getCitiesItems({"areaCode" : this.selectedCity}).subscribe(data => {
       this.locations = data.response.body.items.item;
     });
   }
 
-  onChangeLocation(code){
+  onChangeLocation(code){    
     this.selectedCity = code;
-    this.citiesService.getCitiesItems(
-      {
-        "areaCode" : this.selectedCity
-      }
-    ).subscribe(data => {
+    this.citiesService.getCitiesItems({"areaCode" : this.selectedCity}).subscribe(data => {
       this.locations = data.response.body.items.item;
     });
   }
