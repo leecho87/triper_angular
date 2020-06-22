@@ -100,64 +100,165 @@
 .content_item {
   position:relative;
   flex:1;
-  flex-basis:50%;
-  padding:0 0 55px;
-  margin:40px 0 0;
-  &:nth-child(-n+2) {
-    margin-top:0;
-  }
-  &:nth-child(odd) {
-    padding-right:5px;
-  }
-  &:nth-child(even) {
-    padding-left:5px;
-  }
+}
 
-  .content_thumb {
-    overflow:hidden;
-    height:180px;
-    border-top-left-radius:12px;
-    border-top-right-radius:12px;
-    box-shadow:0 -2px 4px 0 rgba(0, 0, 0, .1);
-
-    img {
-      object-fit: contain;
-      transition:all .2s ease-out;
+// 썸네일 스타일
+.content_list.thumb {
+  .content_item {
+    flex-basis:100%;
+    padding:0 0 55px;
+    margin:40px 0 0;
+    &:first-child() {
+      margin-top:0;
     }
-  }
-
-  .content_txt_box {
-    position:absolute;
-    left:15px;
-    right:15px;
-    bottom:0;
-    padding:15px;
-    border-radius:12px;
-    box-shadow:0 2px 6px 0 rgba(0, 0, 0, .1);
-    background-color:#fff;
-    transition:bottom .5s;
-
-    p {
-      @include ellipsis;
-      font-size:18px;
-    }
-
-    span {
-      display:block;
-      @include ellipsis;
-      font-size:13px;
-      color:#999
-    }
-  }
-
-  &:hover {
     .content_thumb {
+      overflow:hidden;
+      height:180px;
+      border-top-left-radius:12px;
+      border-top-right-radius:12px;
+      text-align:center;
+      box-shadow:0 -2px 4px 0 rgba(0, 0, 0, .1);
+
       img {
-        transform:scale(1.05)
+        height:180px;
+        object-fit: cover;
+        transition:all .2s ease-out;
+        &.no_image {
+          width:120px;
+          height:120px;
+          margin-top:12px;
+        }
       }
     }
+
     .content_txt_box {
-      bottom:10px;
+      position:absolute;
+      left:15px;
+      right:15px;
+      bottom:0;
+      padding:15px;
+      border-radius:12px;
+      box-shadow:0 2px 6px 0 rgba(0, 0, 0, .1);
+      background-color:#fff;
+      transition:bottom .5s;
+
+      p {
+        @include ellipsis;
+        font-size:18px;
+      }
+
+      span {
+        display:block;
+        @include ellipsis;
+        font-size:13px;
+        color:#999
+      }
+    }
+
+    &:hover {
+      .content_thumb {
+        img {
+          transform:scale(1.05)
+        }
+      }
+      .content_txt_box {
+        bottom:10px;
+      }
+    }
+
+    @media (min-width:500px) {
+      flex-basis:calc(50% - 6px);
+      &:nth-child(-n+2) {
+        margin-top:0;
+      }
+      &:nth-child(odd) {
+        margin-right:6px;
+      }
+      &:nth-child(even) {
+        margin-left:6px;
+      }
+    }
+  }
+}
+
+// 폴라로이드 스타일
+.content_list.polaroid {
+  position:relative;
+  flex-wrap:nowrap;
+  overflow-x:auto;
+  padding:10px 0 0;
+  box-shadow:0 -1px 0 #000;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  .content_item {
+    flex:0 0 auto;
+    flex-basis:200px;
+    padding:0;
+    border:1px solid #ddd;
+    margin:0 0 0 12px;
+
+    &:first-child {
+      margin-left:0
+    }
+
+    &:before {
+      content:'';
+      position:absolute;
+      top:-14px;
+      left:30px;
+      width:1px;
+      height:20px;
+      background-color:#000;
+    }
+    &:after {
+      content:'';
+      position:absolute;
+      top:-14px;
+      right:30px;
+      width:1px;
+      height:20px;
+      background-color:#000;
+    }
+    .content_thumb {
+      &:before {
+        content:'';
+        position:absolute;
+        top:2px;
+        left:28px;
+        width:5px;
+        height:5px;
+        background:#000;
+        border-radius:50%;
+      }
+      &:after {
+        content:'';
+        position:absolute;
+        top:2px;
+        right:28px;
+        width:5px;
+        height:5px;
+        background:#000;
+        border-radius:50%;
+      }
+      padding:10px;
+      height:180px;
+      text-align:center;
+
+      img {
+        height:160px;
+        object-fit:cover;
+        &.no_image {
+          width:120px;
+          height:120px;
+          margin-top:12px;
+        }
+      }
+    }
+
+    .content_txt_box {
+      padding:8px 12px 20px;
     }
   }
 }

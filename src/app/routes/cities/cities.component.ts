@@ -37,6 +37,7 @@ export class CitiesComponent implements OnInit {
 
   onlocationFold(event: MouseEvent){
     let el:any = event.target as Element;
+    let item:HTMLLIElement = document.querySelector('.local_item');
     let list:HTMLUListElement = document.querySelector('.local_list');
 
     if ( el.dataset.state === "close" ) {

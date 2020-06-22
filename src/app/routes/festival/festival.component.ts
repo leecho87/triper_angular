@@ -16,7 +16,6 @@ export class FestivalComponent implements OnInit {
   ngOnInit() {
     this.festivalService.getFestivalItems().subscribe(data => {
       this.festivals = data.response.body.items.item;
-      console.log(this.festivals);
     })
   }
 

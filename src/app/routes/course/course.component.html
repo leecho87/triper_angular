@@ -1,17 +1,15 @@
 <div class="content">
-    <h2 class="item_tit">행사/축제정보 <span class="item_info">&middot; 최근 행사/축제에요</span></h2>
-    <ul class="content_list thumb">
+    <h2 class="item_tit">여행코스정보 <span class="item_info">&middot; 최근 여행코스에요</span></h2>
+    <ul class="content_list polaroid">
         <li
             class="content_item"
-            *ngFor="let item of festivals"
+            *ngFor="let item of courses"
         >
             <div class="content_thumb">
                 <img [src]="item.firstimage ? item.firstimage : '/assets/images/not_found.png'" [class.no_image]="!item.firstimage">
             </div>
             <div class="content_txt_box">
                 <p title="{{item.title}}">{{item.title}}</p>
-                <span title="{{item.addr1}}">{{item.addr1}}</span>
-                <span title="{{item.tel}}">{{item.tel}}</span>
             </div>
         </li>
     </ul>

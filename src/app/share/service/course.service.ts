@@ -8,13 +8,13 @@ import { catchError, map } from 'rxjs/operators';
   providedIn: 'root'
 })
 
-export class FestivalService {
+export class CourseService {
   service: string;
 
   constructor(
     private http: HttpClient
   ) {
-    this.service = "searchFestival"
+    this.service = 'areaBasedList'
   }
 
   setParams(data) {
@@ -39,7 +39,7 @@ export class FestivalService {
     return params.slice(0, -1);
   }
 
-  getFestivalItems(data?:any) {
+  getCourseItems(data?:any) {
     return this.http.get(`${environment.apiURL}${this.service}${this.getParam(data)}`).pipe(
         map((res: any) => {
           return res;

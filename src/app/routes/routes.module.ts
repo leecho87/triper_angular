@@ -5,6 +5,7 @@ import { LayoutComponent } from '@app/layout/layout.component';
 import { CitiesComponent } from './cities/cities.component';
 import { HomeComponent } from './home/home.component';
 import { FestivalComponent } from './festival/festival.component';
+import { CourseComponent } from './course/course.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,6 @@ const routes: Routes = [
     RouterModule.forRoot(routes)
   ],
   exports: [RouterModule],
-  declarations: [CitiesComponent, HomeComponent, FestivalComponent]
+  declarations: [CitiesComponent, HomeComponent, FestivalComponent, CourseComponent]
 })
 export class RoutesModule { }
