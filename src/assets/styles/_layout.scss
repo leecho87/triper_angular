@@ -18,7 +18,7 @@
       font-size:42px;
       letter-spacing:0;
       color: #fff;
-      text-shadow: 0 4px 6px #fff;
+      text-shadow:-1px -1px 2px #000 ,1px 1px 2px #000, 0 4px 6px #fff;
     }
   }
 
@@ -47,11 +47,49 @@
 
   .header_comment {
     padding: 20px 0 40px;
+    font-size:20px;
     text-align: center;
     color: #fff;
-    text-shadow: 0 4px 6px #000;
+    text-shadow:-1px -1px 2px #000 ,1px 1px 2px #000, 0 4px 6px #fff;
   }
 }
+
+.footer {
+  z-index: 1500;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  border-top: 1px solid #666;
+  background-color: #fff;
+
+  .nav {
+    height: 60px;
+  }
+
+  .nav_list {
+    display: flex;
+    height: 100%;
+  }
+
+  .nav_item {
+    flex: 1;
+
+    a {
+      display: block;
+      padding: 8px 0 0;
+      height: 100%;
+      font-size: 13px;
+      text-align: center;
+
+      img {
+        margin-bottom: 6px;
+      }
+    }
+  }
+}
+
 
 .container {
   z-index: 500;
@@ -103,46 +141,9 @@
 
   .item_info {
     display: inline-block;
-    margin-left: 15px;
+    margin-left: 8px;
     font-size: 13px;
     vertical-align: middle;
     color: gray;
-  }
-}
-
-
-.footer {
-  z-index: 1500;
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  width: 100%;
-  border-top: 1px solid #666;
-  background-color: #fff;
-
-  .nav {
-    height: 60px;
-  }
-
-  .nav_list {
-    display: flex;
-    height: 100%;
-  }
-
-  .nav_item {
-    flex: 1;
-
-    a {
-      display: block;
-      padding: 8px 0 0;
-      height: 100%;
-      font-size: 13px;
-      text-align: center;
-
-      img {
-        margin-bottom: 6px;
-      }
-    }
   }
 }
