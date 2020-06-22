@@ -21,12 +21,7 @@ export class AppComponent implements OnInit {
 
   containerScroll():void {
     const max:number = 260;
-    const view:number = window.outerHeight;
-    const containerEl:HTMLDivElement = document.querySelector('.container');
     const headerEl:HTMLHeadElement = document.querySelector('.header');
-    console.log(containerEl);
-    console.log(headerEl);
-    console.log(headerEl.clientHeight);
     
     window.addEventListener('scroll', () => {
       let y = window.scrollY;

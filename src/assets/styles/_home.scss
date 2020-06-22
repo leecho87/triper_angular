@@ -20,6 +20,7 @@
       width: 80px;
       height: 80px;
       border-radius: 12px;
+      opacity:.5;
       -webkit-filter:grayscale(100%);
       filter:grayscale(100%);
     }
@@ -36,6 +37,7 @@
 
     &.on {
       img {
+        opacity:1;
         -webkit-filter:grayscale(0);
         filter:grayscale(0);
       }
@@ -76,7 +78,7 @@
   }
 
   .local_list {
-    max-height: 42px;
+    max-height: 56px;
     overflow: hidden;
 
     li {

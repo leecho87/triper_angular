@@ -22,7 +22,6 @@ export class CitiesComponent implements OnInit {
     });
     this.citiesService.getCitiesItems(
       {
-        "numOfRows" : "999",
         "areaCode" : this.selectedCity
       }
     ).subscribe(data => {
@@ -30,7 +29,27 @@ export class CitiesComponent implements OnInit {
     });
   }
 
-  onloadLocation(code){
-    console.log('code', code);
+  onChangeLocation(code){
+    this.selectedCity = code;
+    this.citiesService.getCitiesItems(
+      {
+        "areaCode" : this.selectedCity
+      }
+    ).subscribe(data => {
+      this.locations = data.response.body.items.item;
+    });
+  }
+
+  onlocationFold(event: MouseEvent){
+    let el:any = event.target as Element;
+    let list:HTMLUListElement = document.querySelector('.local_list');
+
+    if ( el.dataset.state === "close" ) {
+      el.dataset.state = "open";
+      list.style.maxHeight = "none";
+    } else {
+      el.dataset.state = "close";
+      list.removeAttribute("style");
+    }
   }
 }

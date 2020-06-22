@@ -15,12 +15,19 @@
 </div>
 <div class="content noline">
     <h2 class="item_tit">지역정보 <span class="item_info">&middot; 선택한 지역의 공식 사이트에요</span></h2>
-    <ul>
-        <li 
-            class="local_item"
-            *ngFor="let item of locations"
-        >
-            {{item.code}} - {{item.name}}
-        </li>
-    </ul>
+    <div class="local_box">
+        <ul class="local_list">
+            <li 
+                class="local_item"
+                *ngFor="let item of locations"
+            >
+                <a href="">{{item.name}}</a>
+            </li>
+        </ul>
+        <a 
+            class="local-list-fold"
+            data-state="close"
+            (click)="onlocationFold($event)"
+        >더보기</a>
+    </div>
 </div>
