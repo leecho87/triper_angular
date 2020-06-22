@@ -20,6 +20,8 @@
       width: 80px;
       height: 80px;
       border-radius: 12px;
+      -webkit-filter:grayscale(100%);
+      filter:grayscale(100%);
     }
 
     span {
@@ -30,6 +32,13 @@
       font-size: 14px;
       color: #fff;
       text-shadow: -2px -2px 4px #000, 2px 2px 4px #000;
+    }
+
+    &.on {
+      img {
+        -webkit-filter:grayscale(0);
+        filter:grayscale(0);
+      }
     }
   }
 }

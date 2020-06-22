@@ -7,8 +7,9 @@ import { CitiesService } from '@app/share/service/cities.service';
 })
 
 export class CitiesComponent implements OnInit {
-  cities: [];
+  cities: Array<Object>;
   selectedCity: number;
+  locations: Array<Object>;
   constructor(
     private citiesService:CitiesService
   ) { 
@@ -16,8 +17,20 @@ export class CitiesComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.citiesService.getCitiesItems().subscribe(data => {
-      this.cities = data.response.body.items.item;      
-    })
+    this.citiesService.getCitiesItems({"numOfRows" : "17"}).subscribe(data => {
+      this.cities = data.response.body.items.item;
+    });
+    this.citiesService.getCitiesItems(
+      {
+        "numOfRows" : "999",
+        "areaCode" : this.selectedCity
+      }
+    ).subscribe(data => {
+      this.locations = data.response.body.items.item;
+    });
+  }
+
+  onloadLocation(code){
+    console.log('code', code);
   }
 }

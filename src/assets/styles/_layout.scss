@@ -1,7 +1,9 @@
 .header {
-  z-index: 1000;
-  position: relative;
-  min-height: 200px;
+  position: fixed;
+  left:0;
+  right:0;
+  top:0;
+  height:260px;
   background-image: url('./assets/images/home/home_top.jpg');
   background-size: cover;
   background-position: center;
@@ -13,6 +15,8 @@
 
     a {
       display: block;
+      font-size:42px;
+      letter-spacing:0;
       color: #fff;
       text-shadow: 0 4px 6px #fff;
     }
@@ -52,6 +56,8 @@
 .container {
   z-index: 500;
   position: relative;
+  margin-top:260px;
+  background-color:#fff;
 }
 
 .content {
@@ -70,6 +76,7 @@
     box-shadow:0 1px 4px 0 rgba(0, 0, 0, .1)
   }
 
+  &.noline,
   &:first-child {
     margin-top:0;
     &:before {
@@ -105,7 +112,7 @@
 
 
 .footer {
-  z-index: 100;
+  z-index: 1500;
   position: fixed;
   left: 0;
   bottom: 0;

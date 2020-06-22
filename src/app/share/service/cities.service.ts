@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
-import { HttpClient, HttpHeaders, HttpParameterCodec } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParameterCodec, HttpParams } from '@angular/common/http';
 import {BehaviorSubject, Observable, of, throwError} from 'rxjs';
 import {catchError, map} from 'rxjs/operators';
 
@@ -10,39 +10,44 @@ import {catchError, map} from 'rxjs/operators';
 
 export class CitiesService {
   service: string;
-  code: number;
+  cities: Array<any>;
+  location: Array<any>;
 
   constructor(
     private http: HttpClient
   ) {
-    this.code = 1;
     this.service = 'areaCode'
   }
 
-  settingParams(code) {
-    let param;
-  }
-
-  getParam(){
-    const param = {
-      ServiceKey : 'xTIWihmkq%2BfoFqkInfWxmsUXV9Py9gV4fkUbleEuJ4SfYsUSneIkUEWSW1Geiuoa8oCXCVFDPBb57XIPaoGD0Q%3D%3D',
+  setParams(data) {
+    const params = {
+      ServiceKey: environment.apiKey,
       MobileOS: 'ETC',
       MobileApp: 'AppTest',
       _type: 'json',
-      numOfRows: 17
-    };
+      numOfRows: 999,
+      ...data
+    }
+
+    return params;
+  }
+
+  getParam(data){
+    const param = this.setParams(data)
 
     const params = Object.keys(param).reduce((acc, cur, i) => {
-      if (param[cur]) {
+      if (param[cur]) {        
         acc += `${cur}=${param[cur]}&`;
       }
+      // console.log('[acc]', acc);
+      
       return acc;
     }, '?');
     return params.slice(0, -1);
   }
-  
-  getCitiesItems() {
-    return this.http.get(`${environment.apiURL}${this.service}${this.getParam()}`).pipe(
+
+  getCitiesItems(data:any) {
+    return this.http.get(`${environment.apiURL}${this.service}${this.getParam(data)}`).pipe(
         map((res: any) => {
           return res;
         }),
@@ -50,9 +55,34 @@ export class CitiesService {
           return throwError(err);
         })
     );
+    
+    return this.http.get(`${environment.apiURL}${this.service}?ServiceKey=Q6I%2FZ%2BtN8n3yVqpZvlgFIP8b9xAx8Sv2KgwT3lcFGRU3RJDZ5V09bOOtfLXTC9PW0kg2Ju9fGOWlO4BMrt2LMw%3D%3D&MobileOS=ETC&MobileApp=AppTest&_type=json`).pipe(
+        map((res: any) => {
+          return res;
+        }),
+        catchError((err) => {
+          return throwError(err);
+        })
+    );
+
+    // return this.http.get(`${environment.apiURL}${this.service}${this.getParam()}`).pipe(
+    //     map((res: any) => {
+    //       return res;
+    //     }),
+    //     catchError((err) => {
+    //       return throwError(err);
+    //     })
+    // );
   }
 
-  getAreaItems() {
-
+  onChangeLocation(data) {
+    return this.http.get(`${environment.apiURL}${this.service}${this.getParam(data)}`).pipe(
+      map((res: any) => {
+        return res;
+      }),
+      catchError((err) => {
+        return throwError(err);
+      })
+  );
   }
 }
