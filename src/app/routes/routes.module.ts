@@ -2,18 +2,21 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { LayoutComponent } from '@app/layout/layout.component';
+import { HeaderComponent } from '@app/layout/component/header/header.component';
 import { CitiesComponent } from './cities/cities.component';
 import { HomeComponent } from './home/home.component';
 import { FestivalComponent } from './festival/festival.component';
 import { CourseComponent } from './course/course.component';
 import { StayComponent } from './stay/stay.component';
+import { SearchComponent } from './search/search.component';
 
 const routes: Routes = [
   {
     path: '',
     component: LayoutComponent,
     children: [
-      {path: '', component: HomeComponent }
+      {path: '', component: HomeComponent, pathMatch: 'full' },
+      {path: 'search', component: SearchComponent },
     ]
   }
 ];
@@ -24,6 +27,6 @@ const routes: Routes = [
     RouterModule.forRoot(routes)
   ],
   exports: [RouterModule],
-  declarations: [CitiesComponent, HomeComponent, FestivalComponent, CourseComponent, StayComponent]
+  declarations: [HeaderComponent, CitiesComponent, HomeComponent, FestivalComponent, CourseComponent, StayComponent, SearchComponent]
 })
 export class RoutesModule { }

@@ -32,12 +32,31 @@ export class CitiesComponent implements OnInit {
     this.selectedCity = code;
     this.citiesService.getCitiesItems({"areaCode" : this.selectedCity}).subscribe(data => {
       this.locations = data.response.body.items.item;
-    });
+    },
+    (err) => console.log(err),
+    () => {
+      this.locationVisibleHandler();
+    }
+    );
+  }
+
+  locationVisibleHandler(){
+    setTimeout(() => {
+      const btn:HTMLLinkElement = document.querySelector('.local-list-fold');
+      const item:HTMLLIElement = document.querySelector('.local_item');
+      const list:HTMLUListElement = document.querySelector('.local_list');
+      let heightFlag = item.clientHeight;
+      
+      if ( list.clientHeight === heightFlag ) {
+        btn.style.display = 'none'
+      } else {
+        btn.style.display = 'block'
+      }
+    }, 0)
   }
 
   onlocationFold(event: MouseEvent){
     let el:any = event.target as Element;
-    let item:HTMLLIElement = document.querySelector('.local_item');
     let list:HTMLUListElement = document.querySelector('.local_list');
 
     if ( el.dataset.state === "close" ) {

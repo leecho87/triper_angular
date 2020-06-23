@@ -19,8 +19,6 @@ export class StayComponent implements OnInit {
       'arrange' : 'P'
     }).subscribe(data => {
       this.stays = data.response.body.items.item;
-      console.log(this.stays);
-
     })
   }
 

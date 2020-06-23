@@ -19,7 +19,6 @@ export class CourseComponent implements OnInit {
       'arrange' : 'P'
     }).subscribe(data => {
       this.courses = data.response.body.items.item;
-      console.log('[this.courses]', this.courses);
     })
   }
 
