@@ -155,16 +155,18 @@
       }
     }
 
-    &:hover {
-      .content_thumb {
-        img {
-          transform:scale(1.05)
+    // @media (hover:hover) and (pointer:fine) {
+      &:hover {
+        .content_thumb {
+          img {
+            transform:scale(1.05)
+          }
+        }
+        .content_txt_box {
+          bottom:10px;
         }
       }
-      .content_txt_box {
-        bottom:10px;
-      }
-    }
+    // }
 
     @media (min-width:500px) {
       flex-basis:calc(50% - 6px);

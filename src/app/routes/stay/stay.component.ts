@@ -15,8 +15,7 @@ export class StayComponent implements OnInit {
 
   ngOnInit() {
     this.stayService.getStayItems({
-      'contentTypeId' : 39,
-      'arrange' : 'P'
+      'arrange' : 'A'
     }).subscribe(data => {
       this.stays = data.response.body.items.item;
     })

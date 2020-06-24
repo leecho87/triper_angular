@@ -7,13 +7,13 @@ import { catchError, map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class StayService {
+export class RestaurantService {
   service: string;
 
   constructor(
     private http: HttpClient
   ) {
-    this.service = "searchStay"
+    this.service = "areaBasedList"
   }
 
   setParams(data) {
@@ -38,7 +38,7 @@ export class StayService {
     return params.slice(0, -1);
   }
 
-  getStayItems(data?:any) {
+  getRestaurantItems(data?:any) {
     return this.http.get(`${environment.apiURL}${this.service}${this.getParam(data)}`).pipe(
         map((res: any) => {
           return res;

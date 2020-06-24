@@ -19,13 +19,14 @@ export class CitiesComponent implements OnInit {
     this.locationAll = this.citiesService.locationAll;
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.citiesService.getCitiesItems().subscribe(data => {
       this.cities = data.response.body.items.item;
     });
     this.citiesService.getCitiesItems({"areaCode" : this.selectedCity}).subscribe(data => {
       this.locations = data.response.body.items.item;
     });
+    await this.locationVisibleHandler();
   }
 
   onChangeLocation(code){
@@ -46,13 +47,15 @@ export class CitiesComponent implements OnInit {
       const item:HTMLLIElement = document.querySelector('.local_item');
       const list:HTMLUListElement = document.querySelector('.local_list');
       let heightFlag = item.clientHeight;
+      console.log('[locationVisibleHandler] / list.clientHeight =', list.clientHeight);
+      console.log('[locationVisibleHandler] / heightFlag =', heightFlag);
       
-      if ( list.clientHeight === heightFlag ) {
+      if ( list.clientHeight <= heightFlag ) {
         btn.style.display = 'none'
       } else {
         btn.style.display = 'block'
       }
-    }, 0)
+    }, 100)
   }
 
   onlocationFold(event: MouseEvent){
