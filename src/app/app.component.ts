@@ -8,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 
 export class AppComponent implements OnInit {
   title = 'Triper';
+  latitude;
+  longitude;
 
   constructor(){
 
@@ -16,7 +18,8 @@ export class AppComponent implements OnInit {
   ngOnInit(){
     setTimeout(() => {
       this.containerScroll()
-    }, 0)
+      this.setGeolocation();
+    }, 0);
   }
 
   containerScroll():void {
@@ -33,5 +36,19 @@ export class AppComponent implements OnInit {
         return;
       }
     })
+  }
+
+  setGeolocation(){
+    navigator.geolocation.getCurrentPosition((position) => {
+      this.latitude = position.coords.latitude;
+      this.longitude = position.coords.longitude;
+      this.alarmGeolocation();
+    });
+  }
+
+  alarmGeolocation():void {
+    setTimeout(() => {
+      alert(`현재 위도는 ${this.latitude}이고 경도는 ${this.longitude} 입니다.`)
+    }, 0)
   }
 }
