@@ -48,7 +48,7 @@ export class AppComponent implements OnInit {
 
   alarmGeolocation():void {
     setTimeout(() => {
-      alert(`현재 위도는 ${this.latitude}이고 경도는 ${this.longitude} 입니다.`)
+      console.log(`현재 위도는 ${this.latitude}이고 경도는 ${this.longitude} 입니다.`);
     }, 0)
   }
 }
