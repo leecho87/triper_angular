@@ -19,14 +19,16 @@ export class CitiesComponent implements OnInit {
     this.locationAll = this.citiesService.locationAll;
   }
 
-  async ngOnInit() {
+  ngOnInit() {
     this.citiesService.getCitiesItems().subscribe(data => {
       this.cities = data.response.body.items.item;
     });
     this.citiesService.getCitiesItems({"areaCode" : this.selectedCity}).subscribe(data => {
       this.locations = data.response.body.items.item;
     });
-    await this.locationVisibleHandler();
+    setTimeout(() => {
+      this.locationVisibleHandler();
+    }, 500)
   }
 
   onChangeLocation(code){
@@ -42,18 +44,16 @@ export class CitiesComponent implements OnInit {
   }
 
   locationVisibleHandler(){
-    setTimeout(() => {
-      const btn:HTMLLinkElement = document.querySelector('.local-list-fold');
-      const item:HTMLLIElement = document.querySelector('.local_item');
-      const list:HTMLUListElement = document.querySelector('.local_list');
-      let heightFlag = item.clientHeight;
-      
-      if ( list.clientHeight <= heightFlag ) {
-        btn.style.display = 'none'
-      } else {
-        btn.style.display = 'block'
-      }
-    }, 200)
+    const btn:HTMLLinkElement = document.querySelector('.local-list-fold:not([style*="display:none"]');
+    const item:HTMLLIElement = document.querySelector('.local_item:not([style*="display:none"]');
+    const list:HTMLUListElement = document.querySelector('.local_list:not([style*="display:none"]');
+    let heightFlag = item.clientHeight;
+    
+    if ( list.clientHeight <= heightFlag ) {
+      btn.style.display = 'none'
+    } else {
+      btn.style.display = 'block'
+    }
   }
 
   onlocationFold(event: MouseEvent){

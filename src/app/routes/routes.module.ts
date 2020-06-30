@@ -16,8 +16,8 @@ const routes: Routes = [
     path: '',
     component: LayoutComponent,
     children: [
-      {path: '', component: HomeComponent, pathMatch: 'full' },
-      {path: 'search', component: SearchComponent },
+      {path: '', component: HomeComponent, pathMatch: 'full', data: { animation: 'pageHome'} },
+      {path: 'search', component: SearchComponent, data: { animation: 'pageSearch'} },
     ]
   }
 ];
