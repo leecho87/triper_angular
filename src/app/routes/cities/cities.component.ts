@@ -36,7 +36,7 @@ export class CitiesComponent implements OnInit {
     this.citiesService.getCitiesItems({"areaCode" : this.selectedCity}).subscribe(data => {
       this.locations = data.response.body.items.item;
     },
-    (err) => console.log(err),
+    err => console.log(err),
     () => {
       this.locationVisibleHandler();
     }
@@ -44,9 +44,9 @@ export class CitiesComponent implements OnInit {
   }
 
   locationVisibleHandler(){
-    const btn:HTMLLinkElement = document.querySelector('.local-list-fold:not([style*="display:none"]');
-    const item:HTMLLIElement = document.querySelector('.local_item:not([style*="display:none"]');
-    const list:HTMLUListElement = document.querySelector('.local_list:not([style*="display:none"]');
+    const btn:HTMLLinkElement = document.querySelector('.local-list-fold');
+    const item:HTMLLIElement = document.querySelector('.local_item');
+    const list:HTMLUListElement = document.querySelector('.local_list');
     let heightFlag = item.clientHeight;
     
     if ( list.clientHeight <= heightFlag ) {
