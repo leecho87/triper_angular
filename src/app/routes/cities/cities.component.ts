@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CitiesService } from '@app/share/service/cities.service';
+import { Locations } from '@app/share/service/locations';
+import { SSL_OP_ALLOW_UNSAFE_LEGACY_RENEGOTIATION } from 'constants';
 
 @Component({
   selector: 'app-cities',
@@ -19,27 +21,37 @@ export class CitiesComponent implements OnInit {
     this.locationAll = this.citiesService.locationAll;
   }
 
-  ngOnInit() {
+  ngOnInit() {    
     this.citiesService.getCitiesItems().subscribe(data => {
       this.cities = data.response.body.items.item;
     });
     this.citiesService.getCitiesItems({"areaCode" : this.selectedCity}).subscribe(data => {
-      this.locations = data.response.body.items.item;
+      const result = this.mergeData(
+        data.response.body.items.item,
+        Locations[this.selectedCity]
+      );
+      this.locations = result;
     });
     setTimeout(() => {
       this.locationVisibleHandler();
     }, 500)
   }
 
+  mergeData(arr1, arr2) {
+    return Object.assign(arr1, arr2);
+  }
+
   onChangeLocation(code){
     this.selectedCity = code;
+    console.log(Locations[code]);
+    
     this.citiesService.getCitiesItems({"areaCode" : this.selectedCity}).subscribe(data => {
       const items = data.response.body.items.item;
       if ( typeof items === 'object' && !Array.isArray(items)) {
         this.locations = [items];
       } else {
         this.locations = items;
-      }
+      }      
     },
     err => console.log(err),
     () => {

@@ -17,7 +17,6 @@ export const slideInAnimation =
       ]),
       query(':enter', [
         style({ transform:'translateY(100%)' }),
-        // animate(250)
       ]),
       query(':leave', animateChild()),
       group([
@@ -27,7 +26,6 @@ export const slideInAnimation =
         query(':enter', [
           animate('400ms ease-out', style({ transform:'translateY(0)' }))
         ])
-      ]),
-      query(':enter', animateChild()),
+      ])
     ])
   ]);

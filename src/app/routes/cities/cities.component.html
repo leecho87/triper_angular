@@ -19,9 +19,9 @@
         <ul class="local_list">
             <li 
                 class="local_item"
-                *ngFor="let item of locations"
+                *ngFor="let item of locations; let idx = index"
             >
-                <a href="/">{{item.name}}</a>
+                <a href="{{item.areaHomepage}}" target="_blank">{{item.name}}</a>
             </li>
         </ul>
         <a 
