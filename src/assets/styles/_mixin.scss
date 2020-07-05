@@ -69,4 +69,16 @@
   -webkit-line-clamp: $line;
 }
 
-;
+@mixin valign($size){
+  &:before {
+    content:'';
+    display:inline-block;
+    width:0;
+    height:100%;
+    vertical-align:middle;
+  }
+  img {
+    width: $size;
+    vertical-align:middle;
+  }
+}

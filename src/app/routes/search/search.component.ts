@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
+import { HttpService } from '@app/share/service/http.service';
 
 @Component({
   selector: 'app-search',
@@ -6,20 +8,52 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit {
+  searchHistory: Array<string>;
+  searchResult: any;
+  searchCount: number;
+  searchTotalCount: number;
+  searchWord: string;
 
-  constructor() { }
-
-  ngOnInit() {
-    // this.apiMapOnload();
+  constructor(
+    private _location: Location,
+    private httpService: HttpService,
+  ) {
+    this.searchHistory = [];
+    this.searchCount = 50;
   }
 
-  apiMapOnload(){
-    // let container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
-    // let options = { //지도를 생성할 때 필요한 기본 옵션
-    //   center: new kakao.maps.LatLng(33.450701, 126.570667), //지도의 중심좌표.
-    //   level: 3 //지도의 레벨(확대, 축소 정도)
-    // };
-  
-    // let map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
+  ngOnInit() {
+  }
+
+  pageBack() {
+    this._location.back();
+  }
+
+  searchHandler(event:KeyboardEvent){
+    if ( event.keyCode !== 13 ) {
+      return
+    }
+    const el = event.target as any;
+    const value = el.value;
+    this.onSearch(value);
+    this.clearSearch(el);
+  }
+
+  clearSearch(el){
+    return el.value = '';
+  }
+
+  onSearch(keyword){
+    this.searchWord = keyword;
+    this.searchHistory = [ ...this.searchHistory, keyword]
+
+    // const param = this.httpService.setParams({keyword});
+    this.httpService.get('searchKeyword', {
+      keyword,
+      numOfRows: this.searchCount
+    }).subscribe(data => {
+      this.searchTotalCount = data.response.body.totalCount;
+      this.searchResult = data.response.body.items.item;
+    })
   }
 }
