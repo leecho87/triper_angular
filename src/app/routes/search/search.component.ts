@@ -13,13 +13,17 @@ export class SearchComponent implements OnInit {
   searchCount: number;
   searchTotalCount: number;
   searchWord: string;
+  searchResultEmpty: boolean;
+  pageNum: number;
 
   constructor(
     private _location: Location,
     private httpService: HttpService,
   ) {
+    this.searchResultEmpty = false;
     this.searchHistory = [];
     this.searchCount = 50;
+    this.pageNum = 1;
   }
 
   ngOnInit() {
@@ -43,17 +47,45 @@ export class SearchComponent implements OnInit {
     return el.value = '';
   }
 
-  onSearch(keyword){
-    this.searchWord = keyword;
-    this.searchHistory = [ ...this.searchHistory, keyword]
+  clearHistory(){
+    this.searchHistory = [];
+  }
 
-    // const param = this.httpService.setParams({keyword});
+  onSearch(keyword){
     this.httpService.get('searchKeyword', {
       keyword,
       numOfRows: this.searchCount
     }).subscribe(data => {
-      this.searchTotalCount = data.response.body.totalCount;
-      this.searchResult = data.response.body.items.item;
+      this.searchWord = keyword;
+      this.searchHistory = [ ...this.searchHistory, keyword];
+      const res = data.response.body;
+      if (
+        res.items === 'undefiend' || res.items === ''
+      ) {
+        this.searchResultEmpty = true;
+      } else {
+        this.searchResultEmpty = false;
+        this.searchResult = res.items.item;
+        this.searchTotalCount = res.totalCount;
+      }
+    })
+  }
+
+  listMore(keyword){
+    this.pageNum++;
+    console.log('[listMore', this.pageNum);
+
+    this.httpService.get('searchKeyword', {
+      keyword,
+      numOfRows: this.searchCount,
+      pageNo : this.pageNum
+    }).subscribe(data => {
+      const item = data.response.body.items.item;
+      for(let i=0; i<item.length; i++){
+      this.searchResult = [...this.searchResult, item[i]];
+      }
+      console.log('[listMore', this.searchResult);
+
     })
   }
 }
