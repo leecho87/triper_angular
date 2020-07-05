@@ -16,27 +16,37 @@
         </div>
     </div>
 
-    <div class="search_history">
-        <p *ngIf="searchHistory.length <= 0">최근 검색한 기록이 없어요.</p>
+    <div class="search_history" [ngClass]="searchHistory.length > 0 ? 'keep' : ''">
+        <p *ngIf="searchHistory.length <= 0">최근 검색한 기록이 없어요</p>
         <a href="/" *ngFor="let item of searchHistory">{{item}}</a>
+        <button
+            *ngIf="searchHistory.length > 0"
+            (click)="clearHistory()"
+        >
+        기록 전체 삭제
+        </button>
     </div>
 
     <div class="search_empty" *ngIf="!searchResult">
-        <p>
+        <p *ngIf="!searchResultEmpty">
             평소에 궁금하셨던 <br>
-            <strong>도시, 지역, 숙박, 맛집, 쇼핑 등</strong><br>
-            필요한 정보를 알려주세요.<br>
-            최대한 빨리 찾아드릴께요.
+            <strong>도시, 지역, 숙박, 맛집, 쇼핑</strong> 등<br>
+            필요한 키워드로 검색해주세요<br>
+            최대한 빨리 찾아드릴께요
+        </p>
+        <p *ngIf="searchResultEmpty">
+            <strong>"{{searchWord}}"</strong>의<br>
+            검색한 결과가 없어요<br>
+            올바른 문구로 검색해주세요
         </p>
     </div>
 
     <div class="search_result" *ngIf="searchResult">
         <div class="result_head">
-            <h2 class="result_info"><strong>"{{searchWord}}"</strong> 검색결과</h2>
+            <h2 class="result_info"><strong>"{{searchWord}}"</strong>로 검색한 결과에요</h2>
             <p>총 <strong>{{searchTotalCount}}</strong> 건</p>
         </div>
-
-        <div class="result_list">
+        <div class="result_list" *ngIf="!searchResultEmpty">
             <ul class="content_list leftAlign">
                 <li
                     class="content_item"
@@ -52,6 +62,10 @@
                     </div>
                 </li>
             </ul>
+            <button
+                class="result_more"
+                (click)="listMore(searchWord)"
+            >더보기</button>
         </div>
     </div>
 </div>

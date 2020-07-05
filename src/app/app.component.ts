@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -11,31 +13,44 @@ export class AppComponent implements OnInit {
   latitude;
   longitude;
 
-  constructor(){
-
+  constructor(
+    private router: Router
+  ){
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.scrollHandler(event.url);
+      }
+    });
   }
 
   ngOnInit(){
     setTimeout(() => {
-      this.containerScroll()
       this.setGeolocation();
     }, 0);
   }
 
-  containerScroll():void {
+  scrollHandler(url):void {
+    if ( url === '/') {
+      window.addEventListener('scroll', this.scrollOpacity)
+    } else {
+      window.removeEventListener('scroll', this.scrollOpacity)
+    }
+  }
+
+  scrollOpacity(){
+    let y = window.scrollY;
     const max:number = 260;
     const headerEl:HTMLHeadElement = document.querySelector('.header');
-    
-    window.addEventListener('scroll', () => {
-      let y = window.scrollY;
-      const opacity = (1 - (y / max)).toFixed(1);
-      
-      if ( y < max ) {
-        headerEl.style.opacity = opacity;
-      } else {
-        return;
-      }
-    })
+    const opacity = (1 - (y / max)).toFixed(1);
+
+
+    if ( y < max ) {
+      headerEl.style.opacity = opacity;
+    } else {
+      return;
+    }
   }
 
   setGeolocation(){
