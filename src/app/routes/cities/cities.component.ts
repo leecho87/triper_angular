@@ -34,16 +34,23 @@ export class CitiesComponent implements OnInit {
   onChangeLocation(code){
     this.selectedCity = code;
     this.citiesService.getCitiesItems({"areaCode" : this.selectedCity}).subscribe(data => {
-      this.locations = data.response.body.items.item;
+      const items = data.response.body.items.item;
+      if ( typeof items === 'object' && !Array.isArray(items)) {
+        this.locations = [items];
+      } else {
+        this.locations = items;
+      }
     },
     err => console.log(err),
     () => {
-      this.locationVisibleHandler();
+      setTimeout(() => {
+        this.locationVisibleHandler();
+      },0)
     }
     );
   }
 
-  locationVisibleHandler(){
+  locationVisibleHandler(){    
     const btn:HTMLLinkElement = document.querySelector('.local-list-fold');
     const item:HTMLLIElement = document.querySelector('.local_item');
     const list:HTMLUListElement = document.querySelector('.local_list');
