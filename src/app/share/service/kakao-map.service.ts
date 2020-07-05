@@ -16,6 +16,7 @@ export class KakaoMapService {
   }
 
   generateMap(mapContainer, mapOption) {
+    console.log("generateMap");
     /**
      * mapContainer : 지도를 표히살 div
      * mapOption : 지도 옵션을 파라미터로 받습니다.

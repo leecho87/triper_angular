@@ -1,0 +1,22 @@
+<div class="content">
+  <h2 class="item_tit">
+    주변 <span class="item_info">&middot; 주변 정보입니다.</span>
+  </h2>
+  <ul class="content_list leftAlign" *ngIf="list.length">
+    <li class="content_item" *ngFor="let item of list">
+      <div class="content_thumb">
+        <img
+          [src]="
+            item.firstimage ? item.firstimage : '/assets/images/not_found.png'
+          "
+          [class.no_image]="!item.firstimage"
+        />
+      </div>
+      <div class="content_txt_box">
+        <p title="{{ item.title }}">{{ item.title }}</p>
+        <span title="{{ item.addr1 }}">{{ item.addr1 }}</span>
+        <span title="{{ item.tel }}">{{ item.tel }}</span>
+      </div>
+    </li>
+  </ul>
+</div>

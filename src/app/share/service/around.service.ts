@@ -14,13 +14,21 @@ export class AroundService {
    * @param mapY
    * @param range
    */
-  locationBasedList(mapY, mapX, range = 2000) {
+  locationBasedList(
+    mapY,
+    mapX,
+    range = 2000,
+    listYN = "Y"
+  ): Promise<{ response }> {
     return new Promise((resolve, reject) => {
       const param = {
         mapX,
         mapY,
-        range,
+        radius: range,
+        listYN,
       };
+
+      console.log("param", param);
       this.httpService.get(this.serviceLabel, param).subscribe(
         (result) => {
           resolve(result);

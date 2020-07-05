@@ -10,7 +10,8 @@ import { CourseComponent } from "./course/course.component";
 import { StayComponent } from "./stay/stay.component";
 import { SearchComponent } from "./search/search.component";
 import { RestaurantComponent } from "./restaurant/restaurant.component";
-import { AroundComponent } from './around/around.component';
+import { AroundComponent } from "./around/around.component";
+import { AroundListComponent } from "./around/around-list/around-list.component";
 
 const routes: Routes = [
   {
@@ -46,6 +47,7 @@ const routes: Routes = [
     SearchComponent,
     RestaurantComponent,
     AroundComponent,
+    AroundListComponent,
   ],
 })
 export class RoutesModule {}
