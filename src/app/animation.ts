@@ -18,14 +18,14 @@ export const slideInAnimation =
       query(':enter', [
         style({ transform:'translateY(100%)' }),
       ]),
-      query(':leave', animateChild()),
+      query(':leave', animateChild(), {optional: true}),
       group([
         query(':leave', [
-          animate('100ms ease-out', style({ transform:'translateY(100%)' }))
-        ]),
+          animate('150ms ease-out', style({ transform:'translateY(100%)' }))
+        ],{optional: true}),
         query(':enter', [
-          animate('400ms ease-out', style({ transform:'translateY(0)' }))
-        ])
+          animate('400ms ease-in', style({ transform:'translateY(0)' }))
+        ],{optional: true})
       ])
     ])
   ]);

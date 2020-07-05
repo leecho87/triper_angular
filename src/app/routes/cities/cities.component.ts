@@ -41,8 +41,6 @@ export class CitiesComponent implements OnInit {
 
   onChangeLocation(code) {
     this.selectedCity = code;
-    console.log(Locations[code]);
-
     this.citiesService
       .getCitiesItems({ areaCode: this.selectedCity })
       .subscribe(
