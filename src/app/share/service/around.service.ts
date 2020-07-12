@@ -28,7 +28,6 @@ export class AroundService {
         listYN,
       };
 
-      console.log("param", param);
       this.httpService.get(this.serviceLabel, param).subscribe(
         (result) => {
           resolve(result);

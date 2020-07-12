@@ -3,7 +3,11 @@
     주변 <span class="item_info">&middot; 주변 정보입니다.</span>
   </h2>
   <ul class="content_list leftAlign" *ngIf="list.length">
-    <li class="content_item" *ngFor="let item of list">
+    <li
+      class="content_item"
+      *ngFor="let item of list"
+      (click)="onClickItem(item)"
+    >
       <div class="content_thumb">
         <img
           [src]="
