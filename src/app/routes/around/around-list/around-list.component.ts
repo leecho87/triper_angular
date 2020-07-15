@@ -36,13 +36,11 @@ export class AroundListComponent implements OnInit, OnChanges {
   }
 
   async onClickItem(item) {
-    console.log(item);
     const { addr1 } = item;
 
     try {
       const result = await this.kakaoAddressService.searchByAddress(addr1);
       this.searchResult = result.data.documents;
-
       const { address_name, x: longitude, y: latitude } = this.searchResult[0];
 
       const mapContainer = document.getElementById("map"); // 지도를 표시할 div
