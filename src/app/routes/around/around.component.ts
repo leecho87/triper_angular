@@ -111,8 +111,9 @@ export class AroundComponent implements OnInit {
     const { keyword } = this.searchForm.getRawValue();
     console.log(keyword);
     try {
-      const result = await this.kakaoAddressService.searchByAddress(keyword);
-      this.searchResult = result.data.documents.pop();
+      const result = await this.kakaoAddressService.searchByKeyword(keyword);
+      console.log('result', result);
+      this.searchResult = result.data.documents.shift();
       console.log(this.searchResult);
       const { address_name, x: longitude, y: latitude } = this.searchResult;
       this.searchForm.patchValue({
