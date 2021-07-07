@@ -1,0 +1,22 @@
+<div class="around_search_container">
+  <div class="search_head">
+    <div class="search">
+      <form [formGroup]="searchForm">
+        <input
+          type="text"
+          id="searchbar"
+          formControlName="keyword"
+          placeholder="검색어를 입력해주세요."
+        />
+        <button (click)="searchHandler($event)">
+          <img src="/assets/images/search/search_glasses.png" alt="검색" />
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="container" (window:resize)="onResize($event)">
+  <div id="map" class="map"></div>
+  <div class="list"></div>
+</div>
+<app-around-list [aroundList]="aroundList"></app-around-list>

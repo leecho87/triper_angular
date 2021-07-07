@@ -3,29 +3,19 @@
     <nav class="nav">
         <ul class="nav_list">
             <li class="nav_item">
-                <a rounterLink="/">
-                    <img src="/assets/images/nav01.png" width="24"><br> 홈
-                </a>
+                <a routerLink="/" routerLinkActive="on" [routerLinkActiveOptions]="{exact:true}">홈</a>
             </li>
             <li class="nav_item">
-                <a rounterLink="/">
-                    <img src="/assets/images/nav02.png" width="24"><br> 지역
-                </a>
+                <a routerLink="/area" routerLinkActive="on">지역</a>
             </li>
             <li class="nav_item">
-                <a rounterLink="/">
-                    <img src="/assets/images/nav03.png" width="24"><br> 검색
-                </a>
+                <a routerLink="/search" routerLinkActive="on">검색</a>
             </li>
             <li class="nav_item">
-                <a rounterLink="/">
-                    <img src="/assets/images/nav04.png" width="24"><br> 주변
-                </a>
+                <a routerLink="/around" routerLinkActive="on">주변</a>
             </li>
             <li class="nav_item">
-                <a rounterLink="/">
-                    <img src="/assets/images/nav05.png" width="24"><br> MY
-                </a>
+                <a routerLink="/my" routerLinkActive="on">MY</a>
             </li>
         </ul>
     </nav>

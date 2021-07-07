@@ -1,0 +1,18 @@
+<div class="content">
+    <h2 class="item_tit">맛집 <span class="item_info">&middot; 최근에 등록된 맛집정보에요</span></h2>
+    <ul class="content_list leftAlign">
+        <li
+            class="content_item"
+            *ngFor="let item of restaurant"
+        >
+            <div class="content_thumb">
+                <img [src]="item.firstimage ? item.firstimage : '/assets/images/not_found.png'" [class.no_image]="!item.firstimage">
+            </div>
+            <div class="content_txt_box">
+                <p title="{{item.title}}">{{item.title}}</p>
+                <span title="{{item.addr1}}">{{item.addr1}}</span>
+                <span title="{{item.tel}}">{{item.tel}}</span>
+            </div>
+        </li>
+    </ul>
+</div>

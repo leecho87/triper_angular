@@ -3,7 +3,7 @@
 }
 html,body {
 	margin: 0;
-	padding: 0 0 60px;
+	padding: 0;
 	border: 0;
     font-family:'tf', 'Apple Gothic', 'Malgun Gothic', 'sans-serif';
     font-size:16px;
@@ -20,8 +20,8 @@ b, u, i, center,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
 	margin: 0;
@@ -29,7 +29,7 @@ time, mark, audio, video {
 	border: 0;
 }
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
+article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;
 }
@@ -50,6 +50,7 @@ table {
 }
 a {
 	text-decoration:none;
+	color:#000;
 	cursor:pointer;
 }
 textarea,
@@ -63,7 +64,9 @@ input[type=password] {
 	box-shadow:none;
 	outline:none;
 	border-radius:8px;
+	font-family:'tf'
 }
 img {
+	width:100%;
 	vertical-align:top;
 }

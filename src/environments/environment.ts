@@ -4,7 +4,10 @@
 
 export const environment = {
   production: false,
-  apiURL : 'http://api.visitkorea.or.kr/openapi/service/rest/KorService/',
+  host: "http://localhost:3000",
+  apiURL: "http://api.visitkorea.or.kr/openapi/service/rest/KorService/",
+  apiKey:
+    "Q6I%2FZ%2BtN8n3yVqpZvlgFIP8b9xAx8Sv2KgwT3lcFGRU3RJDZ5V09bOOtfLXTC9PW0kg2Ju9fGOWlO4BMrt2LMw%3D%3D",
 };
 
 /*

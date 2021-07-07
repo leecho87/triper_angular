@@ -1,22 +1,33 @@
 <div class="content">
-    <h2 class="item_tit">도시정보 <span class="item_info">&middot; 각 도시의 목록입니다</span></h2>
+    <h2 class="item_tit">도시정보 <span class="item_info">&middot; 한국의 도시들이에요</span></h2>
     <ul class="cities_list">
         <li 
             class="cities_item"
             *ngFor="let item of cities"
+            [class.on]="selectedCity === item.code"
         >
-            <img src="/assets/images/cities/city_{{item.code}}.jpg" alt="{{item.name}}">
-            <span>{{item.name}}</span>
+            <a (click)="onChangeLocation(item.code)" title="{{item.name}}에 속한 지역 정보 보기">
+                <img src="/assets/images/cities/city_{{item.code}}.jpg" alt="{{item.name}}">
+                <span>{{item.name}}</span>
+            </a>
         </li>
     </ul>
 </div>
-
-<!-- <div class="content">
-    <h2 class="item_tit">지역정보 <span class="item_info">&middot; 선택한 지역의 정보를 볼 수 있습니다.</span></h2>
+<div class="content noline">
+    <h2 class="item_tit">지역정보 <span class="item_info">&middot; 선택한 지역의 공식 사이트에요</span></h2>
     <div class="local_box">
-        <a href="/" class="local_close" data-state="close">더보기</a>
         <ul class="local_list">
-            <li class="local_item"><a href="http://www.gangnam.go.kr/contents/tourgangnam/1/view.do?mid=FM010406" target="_blank">강남구</a></li>    
+            <li 
+                class="local_item"
+                *ngFor="let item of locations; let idx = index"
+            >
+                <a href="{{item.areaHomepage}}" target="_blank">{{item.name}}</a>
+            </li>
         </ul>
+        <a 
+            class="local-list-fold"
+            data-state="close"
+            (click)="onlocationFold($event)"
+        >더보기</a>
     </div>
-</div> -->
+</div>

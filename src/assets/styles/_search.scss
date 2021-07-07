@@ -1,0 +1,137 @@
+.search_container {
+    height:calc(100vh - 60px)
+}
+.search_head {
+    position:relative;
+    display:flex;
+    align-items:center;
+    padding:30px 20px;
+
+    .prev {
+        flex:0 0 30px;
+        height:38px;
+        margin-right:10px;
+        text-align:center;
+        @include valign(20px);
+    }
+
+    .search {
+        position:relative;
+        flex:1;
+        padding:0 35px 0 0;
+
+        input {
+            width:100%;
+            border:1px solid #ddd;
+            border-radius:12px;
+            font-size:16px;
+
+            &::-webkit-input-placeholder {
+                font-size:14px;
+            }
+        }
+        button {
+            position:absolute;
+            right:0;
+            top:0;
+            width:38px;
+            height:38px;
+            padding:0;
+            text-align:right;
+            border:0 none;
+            background-color:inherit;
+            outline:none;
+            cursor:pointer;
+            @include valign(20px);
+        }
+    }
+}
+
+.search_history {
+    position:relative;
+    padding:20px;
+    border-top:1px solid #ddd;
+    border-bottom:1px solid #ddd;
+
+    &.keep {
+        padding-right:75px;
+    }
+
+    p {
+        text-align:center;
+    }
+
+    a {
+        margin-right:8px;
+        color:blueviolet;
+        text-decoration:underline;
+    }
+
+    button {
+        position:absolute;
+        right:0;
+        top:50%;
+        border:0 none;
+        transform:translateY(-50%);
+        font-size:12px;
+        letter-spacing:-1px;
+        text-decoration:underline;
+        color:#aaa;
+        background:none;
+    }
+}
+
+.search_empty {
+    display:table;
+    width:100%;
+    height:calc(100% - 164px);
+
+    p {
+        display:table-cell;
+        line-height:2;
+        text-align:center;
+        vertical-align:middle;
+        color:#777;
+
+        strong {
+            font-size:20px;
+            color:#000;
+        }
+    }
+}
+
+.search_result {
+    padding:20px 20px 80px;
+
+    .result_head {
+        display:flex;
+        justify-content: space-between;
+        padding:0 0 12px;
+
+        .result_info {
+            font-size:15px;
+            strong {
+                margin-right:6px;
+                font-size:20px;
+            }
+        }
+
+        p {
+            font-size:13px;
+
+            strong {
+                font-size:18px;
+            }
+        }
+    }
+
+    .result_more {
+        width:100%;
+        height:50px;
+        margin-top:30px;
+        border:1px solid #ddd;
+        font-size:16px;
+        background:none;
+        cursor:pointer;
+    }
+}

@@ -1,8 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { slideInAnimation } from '../animation';
 
 @Component({
   selector: 'app-layout',
-  templateUrl: './layout.component.html'
+  templateUrl: './layout.component.html',
+  animations:[
+    slideInAnimation
+  ]
 })
 export class LayoutComponent implements OnInit {
 
@@ -11,4 +16,7 @@ export class LayoutComponent implements OnInit {
   ngOnInit() {
   }
 
+  prepareRoute(outlet: RouterOutlet) {
+    return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
+  }
 }
